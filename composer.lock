@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2114f4c1cc9300e42cbf0281fe31cee4",
-    "content-hash": "e9d03a48396d869d0ca8626b21da4b3e",
+    "hash": "fbfa342af0fdbabc809c797a95e9c795",
+    "content-hash": "844341bd2edf69a912409079cc4bb255",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -68,6 +68,49 @@
                 "zip"
             ],
             "time": "2016-02-15 22:46:40"
+        },
+        {
+            "name": "asm89/stack-cors",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asm89/stack-cors.git",
+                "reference": "3ae8ef219bb4c9a6caf857421719aa07fa7776cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asm89/stack-cors/zipball/3ae8ef219bb4c9a6caf857421719aa07fa7776cc",
+                "reference": "3ae8ef219bb4c9a6caf857421719aa07fa7776cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/http-foundation": "~2.1|~3.0",
+                "symfony/http-kernel": "~2.1|~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Asm89\\Stack": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com"
+                }
+            ],
+            "description": "Cross-origin resource sharing library and stack middleware",
+            "homepage": "https://github.com/asm89/stack-cors",
+            "keywords": [
+                "cors",
+                "stack"
+            ],
+            "time": "2016-08-01 12:05:04"
         },
         {
             "name": "composer/installers",
@@ -851,6 +894,60 @@
             "time": "2016-07-28 09:57:05"
         },
         {
+            "name": "drupal/bene",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thinkshout/bene.git",
+                "reference": "34b1f594f4befc8c59cb08efe2e0d46249aae5e7"
+            },
+            "require": {
+                "composer/installers": "^1.0.20",
+                "cweagans/composer-patches": "~1.0",
+                "drupal/admin_toolbar": "8.1.16",
+                "drupal/config_installer": "8.1.x-dev",
+                "drupal/console": "~1.0",
+                "drupal/contact_storage": "8.1.0-beta2",
+                "drupal/core": "^8.2.0",
+                "drupal/ctools": "8.3.0-alpha26",
+                "drupal/devel": "8.1.x-dev",
+                "drupal/ds": "8.2.3",
+                "drupal/email_registration": "8.1.0-rc3",
+                "drupal/google_analytics": "8.2.0",
+                "drupal/inline_entity_form": "8.1.0-alpha6",
+                "drupal/layout_plugin": "8.1.0-alpha22",
+                "drupal/linkit": "8.4.1",
+                "drupal/metatag": "8.1.0-beta9",
+                "drupal/pathauto": "8.1.0-alpha3",
+                "drupal/r4032login": "8.x-1.x-dev",
+                "drupal/simple_sitemap": "8.2.5",
+                "drupal/token": "8.1.0-alpha2",
+                "drush/drush": "^8.1.0"
+            },
+            "require-dev": {
+                "drupal/drupal-driver": "dev-master",
+                "drupal/drupal-extension": "dev-master",
+                "drush-ops/behat-drush-endpoint": "dev-master",
+                "jcalderonzumba/gastonjs": "1.1.x-dev",
+                "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+                "mikey179/vfsstream": "~1.2",
+                "phpunit/phpunit": "~4.8",
+                "symfony/css-selector": "~2.8"
+            },
+            "type": "drupal-profile",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "ThinkShout",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Bene distribution for non-profits",
+            "time": "2016-09-08 20:33:51"
+        },
+        {
             "name": "drupal/config_installer",
             "version": "dev-8.x-1.x",
             "source": {
@@ -998,19 +1095,20 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.1.9",
+            "version": "8.2.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "b4fce409224b6351dce94f74b1e48f82515e191d"
+                "reference": "e007a6ef60895655de6d7d65b84d99a22504be19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/b4fce409224b6351dce94f74b1e48f82515e191d",
-                "reference": "b4fce409224b6351dce94f74b1e48f82515e191d",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/e007a6ef60895655de6d7d65b84d99a22504be19",
+                "reference": "e007a6ef60895655de6d7d65b84d99a22504be19",
                 "shasum": ""
             },
             "require": {
+                "asm89/stack-cors": "~1.0",
                 "composer/semver": "~1.0",
                 "doctrine/annotations": "1.2.*",
                 "doctrine/common": "2.5.*",
@@ -1021,7 +1119,7 @@
                 "paragonie/random_compat": "~1.0",
                 "php": ">=5.5.9",
                 "stack/builder": "1.0.*",
-                "symfony-cmf/routing": "1.3.*",
+                "symfony-cmf/routing": "~1.4",
                 "symfony/class-loader": "~2.8",
                 "symfony/console": "~2.8",
                 "symfony/dependency-injection": "~2.8",
@@ -1050,6 +1148,7 @@
                 "drupal/big_pipe": "self.version",
                 "drupal/block": "self.version",
                 "drupal/block_content": "self.version",
+                "drupal/block_place": "self.version",
                 "drupal/book": "self.version",
                 "drupal/breakpoint": "self.version",
                 "drupal/ckeditor": "self.version",
@@ -1059,6 +1158,7 @@
                 "drupal/config": "self.version",
                 "drupal/config_translation": "self.version",
                 "drupal/contact": "self.version",
+                "drupal/content_moderation": "self.version",
                 "drupal/content_translation": "self.version",
                 "drupal/contextual": "self.version",
                 "drupal/core-annotation": "self.version",
@@ -1083,6 +1183,7 @@
                 "drupal/core-utility": "self.version",
                 "drupal/core-uuid": "self.version",
                 "drupal/datetime": "self.version",
+                "drupal/datetime_range": "self.version",
                 "drupal/dblog": "self.version",
                 "drupal/dynamic_page_cache": "self.version",
                 "drupal/editor": "self.version",
@@ -1108,6 +1209,7 @@
                 "drupal/minimal": "self.version",
                 "drupal/node": "self.version",
                 "drupal/options": "self.version",
+                "drupal/outside_in": "self.version",
                 "drupal/page_cache": "self.version",
                 "drupal/path": "self.version",
                 "drupal/quickedit": "self.version",
@@ -1147,7 +1249,6 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
-                    "Source plugins have a hidden dependency on migrate_drupal": "https://www.drupal.org/files/issues/source_plugins_have_a-2560795-101.patch",
                     "Use 'view label' operation for ER label formatter - https://www.drupal.org/node/2692091#comment-11090279": "https://www.drupal.org/files/issues/2692091-10.patch",
                     "Telephone field with 5 digits or less fatally breaks formatter": "https://www.drupal.org/files/issues/min-length-telephone-link-2484693-26.patch"
                 }
@@ -1173,7 +1274,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-09-07 19:16:42"
+            "time": "2016-09-07 21:40:46"
         },
         {
             "name": "drupal/ctools",
@@ -1630,42 +1731,6 @@
             "description": "Redirect anonymous users from 403 Access Denied pages to the /user/login page.",
             "homepage": "https://www.drupal.org/project/r4032login",
             "time": "2016-03-01 13:56:38"
-        },
-        {
-            "name": "drupal/redis",
-            "version": "8.1.0-alpha1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/redis",
-                "reference": "5e5a43dfabe32fd84438edaef20df2974cef5b3b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/redis-8.x-1.0-alpha1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "drupal/core": "8.*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\redis\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0"
-            ],
-            "description": "Provide a module placeholder, for using as dependency for module that needs Redis.",
-            "homepage": "https://www.drupal.org/project/redis",
-            "time": "2016-05-23 14:56:31"
         },
         {
             "name": "drupal/simple_sitemap",
@@ -2959,36 +3024,38 @@
         },
         {
             "name": "symfony-cmf/routing",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/Routing.git",
-                "reference": "8e87981d72c6930a27585dcd3119f3199f6cb2a6"
+                "reference": "b93704ca098334f56e9b317932f21a4362e620db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/8e87981d72c6930a27585dcd3119f3199f6cb2a6",
-                "reference": "8e87981d72c6930a27585dcd3119f3199f6cb2a6",
+                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/b93704ca098334f56e9b317932f21a4362e620db",
+                "reference": "b93704ca098334f56e9b317932f21a4362e620db",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3",
-                "psr/log": "~1.0",
-                "symfony/http-kernel": "~2.2",
-                "symfony/routing": "~2.2"
+                "php": "^5.3.9|^7.0",
+                "psr/log": "1.*",
+                "symfony/http-kernel": "^2.2|3.*",
+                "symfony/routing": "^2.2|3.*"
             },
             "require-dev": {
-                "symfony/config": "~2.2",
-                "symfony/dependency-injection": "~2.0@stable",
-                "symfony/event-dispatcher": "~2.1"
+                "friendsofsymfony/jsrouting-bundle": "^1.1",
+                "symfony-cmf/testing": "^1.3",
+                "symfony/config": "^2.2|3.*",
+                "symfony/dependency-injection": "^2.0.5|3.*",
+                "symfony/event-dispatcher": "^2.1|3.*"
             },
             "suggest": {
-                "symfony/event-dispatcher": "DynamicRouter can optionally trigger an event at the start of matching. Minimal version ~2.1"
+                "symfony/event-dispatcher": "DynamicRouter can optionally trigger an event at the start of matching. Minimal version (~2.1)"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -3012,7 +3079,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2014-10-20 20:55:17"
+            "time": "2016-03-31 09:11:39"
         },
         {
             "name": "symfony/class-loader",
@@ -5564,11 +5631,17 @@
         },
         {
             "name": "drupal/drupal-driver",
-            "version": "dev-master",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thinkshout/DrupalDriver.git",
-                "reference": "6410c2a9b8ebadab8a65d51b015eb0bbb9ce248e"
+                "url": "https://github.com/jhedstrom/DrupalDriver.git",
+                "reference": "125d39918c97f7a08e3110d456a0a1db864dae46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhedstrom/DrupalDriver/zipball/125d39918c97f7a08e3110d456a0a1db864dae46",
+                "reference": "125d39918c97f7a08e3110d456a0a1db864dae46",
+                "shasum": ""
             },
             "require": {
                 "symfony/dependency-injection": "~2.6|~3.0",
@@ -5594,6 +5667,7 @@
                     "Drupal\\Tests\\Driver": "tests/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
@@ -5610,15 +5684,21 @@
                 "test",
                 "web"
             ],
-            "time": "2016-06-19 06:43:28"
+            "time": "2016-06-20 16:29:51"
         },
         {
             "name": "drupal/drupal-extension",
-            "version": "dev-master",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thinkshout/drupalextension.git",
-                "reference": "49912b7e5f078be0b6229de0d6644ab781ee9b61"
+                "url": "https://github.com/jhedstrom/drupalextension.git",
+                "reference": "abe3a33abd94382ab62423dd972fa820c63962e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhedstrom/drupalextension/zipball/abe3a33abd94382ab62423dd972fa820c63962e3",
+                "reference": "abe3a33abd94382ab62423dd972fa820c63962e3",
+                "shasum": ""
             },
             "require": {
                 "behat/behat": "~3.1.0-rc2",
@@ -5626,7 +5706,7 @@
                 "behat/mink-extension": "~2.0",
                 "behat/mink-goutte-driver": "~1.0",
                 "behat/mink-selenium2-driver": "~1.1",
-                "drupal/drupal-driver": "dev-master",
+                "drupal/drupal-driver": "~1.2",
                 "symfony/dependency-injection": "~2.7",
                 "symfony/event-dispatcher": "~2.7"
             },
@@ -5648,6 +5728,7 @@
                     "Drupal\\DrupalExtension": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
@@ -5664,33 +5745,7 @@
                 "test",
                 "web"
             ],
-            "time": "2016-05-07 02:52:13"
-        },
-        {
-            "name": "drush-ops/behat-drush-endpoint",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thinkshout/behat-drush-endpoint.git",
-                "reference": "ba51eac83b2477059cd0f12092c1e3ffd783beec"
-            },
-            "require": {
-                "composer/installers": "~1.0",
-                "drupal/drupal-driver": "*",
-                "php": ">=5.3.0"
-            },
-            "type": "drupal-drush",
-            "license": [
-                "GPLv2"
-            ],
-            "description": "Drush commandfile for use with drupal/drupal-driver.",
-            "homepage": "https://github.com/drush-ops/behat-drush-endpoint",
-            "keywords": [
-                "behat",
-                "drush",
-                "testing"
-            ],
-            "time": "2016-06-19 06:44:25"
+            "time": "2016-06-30 21:12:18"
         },
         {
             "name": "fabpot/goutte",
@@ -5800,124 +5855,6 @@
             "time": "2015-06-15 20:19:33"
         },
         {
-            "name": "jcalderonzumba/gastonjs",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jcalderonzumba/gastonjs.git",
-                "reference": "4ff4a788d4995ae0d4b45fdcb1b76650e2eec72a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jcalderonzumba/gastonjs/zipball/4ff4a788d4995ae0d4b45fdcb1b76650e2eec72a",
-                "reference": "4ff4a788d4995ae0d4b45fdcb1b76650e2eec72a",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "~5.0|~6.0",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.6",
-                "silex/silex": "~1.2",
-                "symfony/phpunit-bridge": "~2.7",
-                "symfony/process": "~2.1"
-            },
-            "type": "phantomjs-api",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Zumba\\GastonJS\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Juan Francisco Calderón Zumba",
-                    "email": "juanfcz@gmail.com",
-                    "homepage": "http://github.com/jcalderonzumba"
-                }
-            ],
-            "description": "PhantomJS API based server for webpage automation",
-            "homepage": "https://github.com/jcalderonzumba/gastonjs",
-            "keywords": [
-                "api",
-                "automation",
-                "browser",
-                "headless",
-                "phantomjs"
-            ],
-            "time": "2016-05-04 16:27:07"
-        },
-        {
-            "name": "jcalderonzumba/mink-phantomjs-driver",
-            "version": "v0.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jcalderonzumba/MinkPhantomJSDriver.git",
-                "reference": "782892dbea4af7d04024374672b3790b6c008def"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jcalderonzumba/MinkPhantomJSDriver/zipball/782892dbea4af7d04024374672b3790b6c008def",
-                "reference": "782892dbea4af7d04024374672b3790b6c008def",
-                "shasum": ""
-            },
-            "require": {
-                "behat/mink": "~1.6",
-                "jcalderonzumba/gastonjs": "~1.0",
-                "php": ">=5.4",
-                "twig/twig": "~1.20|~2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.6",
-                "silex/silex": "~1.2",
-                "symfony/css-selector": "~2.1",
-                "symfony/phpunit-bridge": "~2.7",
-                "symfony/process": "~2.3"
-            },
-            "type": "mink-driver",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Zumba\\Mink\\Driver\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Juan Francisco Calderón Zumba",
-                    "email": "juanfcz@gmail.com",
-                    "homepage": "http://github.com/jcalderonzumba"
-                }
-            ],
-            "description": "PhantomJS driver for Mink framework",
-            "homepage": "http://mink.behat.org/",
-            "keywords": [
-                "ajax",
-                "browser",
-                "headless",
-                "javascript",
-                "phantomjs",
-                "testing"
-            ],
-            "time": "2015-12-04 13:55:02"
-        },
-        {
             "name": "league/container",
             "version": "2.2.0",
             "source": {
@@ -5980,52 +5917,6 @@
                 "service"
             ],
             "time": "2016-03-17 11:07:59"
-        },
-        {
-            "name": "mikey179/vfsStream",
-            "version": "v1.6.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mikey179/vfsStream.git",
-                "reference": "0247f57b2245e8ad2e689d7cee754b45fbabd592"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mikey179/vfsStream/zipball/0247f57b2245e8ad2e689d7cee754b45fbabd592",
-                "reference": "0247f57b2245e8ad2e689d7cee754b45fbabd592",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.6.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "org\\bovigo\\vfs\\": "src/main/php"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Frank Kleine",
-                    "homepage": "http://frankkleine.de/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Virtual file system to mock the real file system in unit tests.",
-            "homepage": "http://vfs.bovigo.org/",
-            "time": "2016-07-18 14:02:57"
         },
         {
             "name": "pantheon-systems/ci-scripts",
@@ -7168,13 +7059,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/devel": 20,
-        "drupal/r4032login": 20,
-        "drupal/config_installer": 20,
-        "drupal/drupal-driver": 20,
-        "drupal/drupal-extension": 20,
-        "drush-ops/behat-drush-endpoint": 20,
-        "jcalderonzumba/gastonjs": 20,
+        "drupal/bene": 20,
         "thinkshout/robo-drupal": 20
     },
     "prefer-stable": true,
