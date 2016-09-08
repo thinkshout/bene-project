@@ -44,7 +44,7 @@ and adding these lines:
 Start inside the ~/Sites directory and build your site (replace 'new-project-name' with the name of the project folder):
 
 ```
-composer create-project thinkshout/bene-project:8.x-pantheon-dev new-project-name --stability dev --no-interaction
+composer create-project thinkshout/bene-project:master new-project-name --stability dev --no-interaction
 ```
 
 Enter the new site folder:
