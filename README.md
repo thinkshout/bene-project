@@ -1,8 +1,8 @@
-[![CircleCI](https://circleci.com/gh/thinkshout/drupal-project/tree/8.x-pantheon.svg?style=svg)](https://circleci.com/gh/thinkshout/drupal-project/tree/8.x-pantheon)
+[![CircleCI](https://circleci.com/gh/thinkshout/bene-project/tree/8.x-pantheon.svg?style=svg)](https://circleci.com/gh/thinkshout/bene-project/tree/8.x-pantheon)
 
-# Drupal Project (Pantheon edition)
+# Bene Project
 
-**Note**: This project was forked from the [drupal-project](https://github.com/drupal-composer/drupal-project) repository.
+**Note**: This project was forked from the [drupal-project](https://github.com/drupal-composer/bene-project) repository.
 
 ## Development set-up
 
@@ -33,10 +33,41 @@ and adding these lines:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/thinkshout/drupal-project"
+            "url": "https://github.com/thinkshout/bene-project"
         }
     ]
 }
+```
+
+### Initial build (new repo)
+
+Start inside the ~/Sites directory and build your site (replace 'new-project-name' with the name of the project folder):
+
+```
+composer create-project thinkshout/bene-project:8.x-pantheon-dev new-project-name --stability dev --no-interaction
+```
+
+Enter the new site folder:
+
+```
+cd new-project-name
+```
+
+Initialize a repository on github https://github.com/new that matches your project name and connect your local directory to it:
+
+```
+git init
+git add .
+git commit -m "Initial commit."
+git remote add origin git@github.com:thinkshout/new-project-name.git
+git push -u origin master
+```
+
+To initialize the project name in several of the files run:
+
+```
+composer install
+robo init
 ```
 
 ### Initial build (existing repo)
@@ -44,8 +75,8 @@ and adding these lines:
 From within your `~/Sites` directory run:
 
 ```
-git clone git@github.com:thinkshout/bene-project.git
-cd bene-project
+git clone git@github.com:thinkshout/new-project-name.git
+cd new-project-name
 composer install
 ```
 
