@@ -20,9 +20,6 @@ behat/behat.local.yml
 
 # Ignore local settings
 sites/default/settings.local.php
-sites/default/settings.nancy.php
-sites/nancy.services.yml
-modules/custom/nancy_dev/*
 
 # Ignore CSS map files
 style.css.map
