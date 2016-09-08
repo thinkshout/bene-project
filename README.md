@@ -6,7 +6,7 @@
 
 ## Development set-up
 
-This is a Drupal 8 site built using the [robo taskrunner](http://robo.li/). As such, it does not require separate `/project` and `~/Sites` folders. Install the repo directly into `~/Sites` using `git clone` and you will be ready to begin.  
+This is a Drupal 8 site built using the [robo taskrunner](http://robo.li/). 
 
 First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
 
@@ -41,7 +41,7 @@ and adding these lines:
 
 ### Initial build (new repo)
 
-Start inside the ~/Sites directory and build your site (replace 'new-project-name' with the name of the project folder):
+Start inside the ~/Projects directory and build your site (replace 'new-project-name' with the name of the project folder):
 
 ```
 composer create-project thinkshout/bene-project:master new-project-name --stability dev --no-interaction
