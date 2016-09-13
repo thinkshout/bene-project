@@ -11,6 +11,10 @@
     ],
     "repositories": [
         {
+            "type": "composer",
+            "url": "https://packagist.drupal-composer.org"
+        },
+        {
             "type": "git",
             "url": "https://github.com/thinkshout/bene.git"
         }
