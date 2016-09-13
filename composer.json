@@ -23,8 +23,7 @@
         "drupal/bene": "dev-master"
     },
     "require-dev": {
-        "thinkshout/robo-drupal": "dev-master",
-        "pantheon-systems/ci-scripts": "*"
+        "thinkshout/robo-drupal": "dev-master"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -59,11 +58,6 @@
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
-        },
-        "drupal-scaffold": {
-            "excludes": [
-                ".htaccess"
-            ]
         }
     }
 }
