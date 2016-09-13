@@ -10,8 +10,8 @@ local:
       show_cmd: 'mv %s ./behat_results.html; /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome http://shatterproof.dev/behat_results.html'
     Drupal\DrupalExtension:
       drupal:
-        drupal_root: /Users/YOU/Sites/yoursite/docroot
+        drupal_root: /Users/YOU/Sites/yoursite/web
       drush:
-        root: /Users/YOU/Sites/yoursite/docroot
+        root: /Users/YOU/Sites/yoursite/web
 imports:
   - behat.yml
