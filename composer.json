@@ -17,6 +17,10 @@
         {
             "type": "git",
             "url": "https://github.com/thinkshout/bene.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/thinkshout/media.git"
         }
     ],
     "require": {
@@ -24,7 +28,8 @@
         "drupal-composer/drupal-scaffold": "^2.0.1",
         "cweagans/composer-patches": "~1.0",
         "vlucas/phpdotenv": "^2.2",
-        "drupal/bene": "dev-master"
+        "drupal/bene": "dev-master",
+        "thinkshout/media": "dev-8.x-1.x"
     },
     "require-dev": {
         "thinkshout/robo-drupal": "dev-master"
