@@ -28,7 +28,7 @@
         "drupal-composer/drupal-scaffold": "^2.0.1",
         "cweagans/composer-patches": "~1.0",
         "vlucas/phpdotenv": "^2.2",
-        "drupal/bene": "dev-master",
+        "drupal/bene": "dev-april17_update",
         "thinkshout/media": "dev-8.x-1.x"
     },
     "require-dev": {
