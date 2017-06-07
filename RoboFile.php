@@ -12,6 +12,8 @@ class RoboFile extends \ThinkShout\RoboDrupal\Tasks
 
   public function devUpdate() {
 
+    $this->_remove('composer.lock');
+
     $this->taskComposerUpdate()
       ->option('with-dependencies')
       ->arg('drupal/bene')
