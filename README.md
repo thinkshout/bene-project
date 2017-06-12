@@ -26,7 +26,7 @@ You can also make this change permanent by editing your `~/.zshrc` or `~/.bashrc
 Start inside the ~/Projects directory and build your site (replace 'new-project-name' with the name of the project folder):
 
 ```
-composer create-project thinkshout/bene-project:master new-project-name --stability dev --no-interaction
+composer create-project thinkshout/bene-project:pantheon new-project-name --stability dev --no-interaction
 ```
 
 Enter the new site folder:
@@ -35,31 +35,11 @@ Enter the new site folder:
 cd new-project-name
 ```
 
-Initialize a repository on github https://github.com/new that matches your project name and connect your local directory to it:
-
-```
-git init
-git add .
-git commit -m "Initial commit."
-git remote add origin git@github.com:thinkshout/new-project-name.git
-git push -u origin master
-```
-
 To initialize the project name in several of the files run:
 
 ```
 composer install
 robo init
-```
-
-### Initial build (existing repo)
-
-From within your `~/Sites` directory run:
-
-```
-git clone git@github.com:thinkshout/new-project-name.git
-cd new-project-name
-composer install
 ```
 
 ### Building
@@ -99,7 +79,12 @@ Test are run automatically on CircleCI, but can be run locally as well with:
 robo test
 ```
 
-## Updating contributed code
+## Updating the code
+
+### Updating the install profile
+
+All work on the profile should occur in `web/profiles/bene`. Commit and push changes to that repo. To update the profile 
+within your project run `robo dev:update` from your project
 
 ### Updating contrib modules
 
