@@ -9,16 +9,16 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
+    "repositories": {
+        "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        {
+        "bene": {
             "type": "git",
             "url": "https://github.com/thinkshout/bene.git"
         }
-    ],
+    },
     "require": {
         "drupal/bene": "dev-master",
         "composer/installers": "^1.2",
