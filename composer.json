@@ -17,11 +17,16 @@
         "bene": {
             "type": "git",
             "url": "https://github.com/thinkshout/bene.git"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     },
     "require": {
-        "drupal/bene": "dev-8.x-1.x",
+        "drupal/bene": "dev-64-media",
         "composer/installers": "^1.2",
+        "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.0",
         "drush/drush": "^8.1.10",
@@ -54,9 +59,13 @@
         ]
     },
     "extra": {
+        "installer-types": ["bower-asset"],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset"
+            ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
