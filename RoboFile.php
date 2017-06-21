@@ -9,6 +9,16 @@
 class RoboFile extends \ThinkShout\RoboDrupal\Tasks
 {
 
+  /**
+   * @inheritdoc
+   */
+  public function install() {
+    if (parent::install()) {
+      // TODO: Run main menu migration.
+      return TRUE;
+    }
+    return FALSE;
+  }
 
   public function devUpdate() {
 
