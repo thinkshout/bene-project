@@ -9,13 +9,13 @@
 class RoboFile extends \ThinkShout\RoboDrupal\Tasks
 {
 
-  /**
-   * @inheritdoc
-   */
   public function install() {
     if (parent::install()) {
-      // TODO: Run main menu migration.
-      return TRUE;
+      // Run menu migration.
+      $result = $this->taskExec('drush mi menu_links')
+        ->run();
+
+      return $result;
     }
     return FALSE;
   }
