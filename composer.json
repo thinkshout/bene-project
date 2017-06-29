@@ -59,6 +59,7 @@
         ]
     },
     "extra": {
+        "enable-patching": true,
         "installer-types": ["bower-asset"],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
@@ -82,7 +83,6 @@
                 ".editorconfig",
                 ".eslintignore",
                 ".eslintrc.json",
-                ".htaccess",
                 "web.config"
             ]
         }
