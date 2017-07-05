@@ -24,7 +24,7 @@
         }
     },
     "require": {
-        "drupal/bene": "dev-64-media",
+        "drupal/bene": "8.x-1.x-dev",
         "composer/installers": "^1.2",
         "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
