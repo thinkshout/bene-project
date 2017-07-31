@@ -9,22 +9,17 @@
 class RoboFile extends \ThinkShout\RoboDrupal\Tasks
 {
 
-
   public function devUpdate() {
 
     $this->_remove('composer.lock');
 
-    $this->taskComposerUpdate()
+    $result = $this->taskComposerUpdate()
       ->option('with-dependencies')
       ->arg('drupal/bene')
       ->run();
 
-    // Run the installation.
-    $result = $this->taskExec('drush cim --partial')
-      ->run();
-
     if ($result->wasSuccessful()) {
-      $this->say('Install complete');
+      $this->say('Update complete');
     }
 
     return $result;
@@ -44,4 +39,5 @@ class RoboFile extends \ThinkShout\RoboDrupal\Tasks
     }
     $this->taskExec('drush mr --all && drush pmu bene_migrate_google_sheets -y && drush en bene_migrate_google_sheets -y && drush ms')->dir($project_properties['web_root'])->run();
   }
+
 }
