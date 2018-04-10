@@ -10,7 +10,7 @@ function print_help () {
   echo ""
   echo "options:"
   echo "-h, --help            show this text"
-  echo "-d, --directory.      specify install directory"
+  echo "-d, --directory       specify install directory"
 }
 
 function check_dir () {
@@ -37,12 +37,13 @@ function confirm () {
 function composer_setup () {
   echo "...Setting up Bene distro in $1"
   ROOT=$1
-  composer create-project thinkshout/bene-project:master $ROOT --stability dev --no-interaction
+  composer create-project thinkshout/bene-project:4-fix-install $ROOT --stability dev --no-interaction
 }
 
 function project_setup () {
   echo "...Configuring project"
   composer install
+  composer drupal-scaffold
   ./vendor/bin/robo init
 }
 
@@ -73,11 +74,7 @@ function build_project () {
 
   # @TODO pressflow
   # DEFAULT_PRESSFLOW_SETTINGS_={"databases":{"default":{"default":{"driver":"mysql","prefix":"","database":"","username":"root","password":"root","host":"localhost","port":3306}}},"conf":{"pressflow_smart_start":true,"pantheon_binding":null,"pantheon_site_uuid":null,"pantheon_environment":"local","pantheon_tier":"local","pantheon_index_host":"localhost","pantheon_index_port":8983,"redis_client_host":"localhost","redis_client_port":6379,"redis_client_password":"","file_public_path":"sites\/default\/files","file_private_path":"sites\/default\/files\/private","file_directory_path":"site\/default\/files","file_temporary_path":"\/tmp","file_directory_temp":"\/tmp","css_gzip_compression":false,"js_gzip_compression":false,"page_compression":false},"hash_salt":"","config_directory_name":"sites\/default\/config","drupal_hash_salt":""}
-
-  ./vendor/bin/robo configure --profile=bene
-  ./vendor/bin/robo configure --db-name=$db_name
-  ./vendor/bin/robo configure --db-user=$DB_USER
-  ./vendor/bin/robo configure --db-pass=$DB_PASS
+  ./vendor/bin/robo configure --db-user=$DB_USER --db-pass=$DB_PASS --db-name=$db_name --profile=bene
   ./vendor/bin/robo install
 }
 
@@ -110,6 +107,7 @@ function perform_install () {
     rm -rf $DEST
   fi
 
+  mkdir $DEST
   composer_setup $DEST
   echo "... cd $DEST"
   cd $DEST
