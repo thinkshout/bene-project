@@ -12,8 +12,10 @@ class RoboFile extends \ThinkShout\RoboDrupal\Tasks
   public function install() {
     if (parent::install()) {
       // Run menu migration.
-      $result = $this->taskExec('drush mi menu_links')
-        ->run();
+      // $result = $this->taskExec('drush mi menu_links')
+      //   ->run();
+
+      $result = FALSE;
 
       return $result;
     }
