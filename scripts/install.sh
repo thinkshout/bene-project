@@ -3,6 +3,10 @@
 
 set -e
 
+INPUT_COLOR="\033[1;36m"
+MSG_COLOR="\033[0;31m"
+NO_COLOR="\033[0m"
+
 # Utility functions
 
 function print_help () {
@@ -53,18 +57,19 @@ function project_setup () {
 function build_project () {
   echo "...Building project"
 
-  echo "Database name: "
+  echo -e "${INPUT_COLOR}Database name:${NO_COLOR}"
   read db_name
 
   DB_USER='root'
   DB_PASS='root'
-  DEFAULT_DB_SETTINGS=$(confirm 'Use root:root for db? [Y/n]')
+  echo -e "${INPUT_COLOR}Use root:root for db?${NO_COLOR}"
+  DEFAULT_DB_SETTINGS=$(confirm '[Y/n]')
   if [ "$DEFAULT_DB_SETTINGS" != "true" ]; then
-    echo "Database user:"
+    echo -e "${INPUT_COLOR}Database user:${NO_COLOR}"
     read db_user
     DB_USER=$db_user
 
-    echo "Database pass:"
+    echo -e "${INPUT_COLOR}Database pass:${NO_COLOR}"
     read db_pass
     beneDB_PASS=$db_pass
   fi
@@ -76,11 +81,11 @@ function build_project () {
 function git_setup () {
   echo "...Registering git repository"
   git init
-  echo "Git repo: "
+  echo -e "${INPUT_COLOR}Git repo:${NO_COLOR}"
   read git_repo
   git remote add origin $git_repo
   git add .
-  echo "Inital commit message: " 
+  echo -e "${INPUT_COLOR}Inital commit message:${NO_COLOR}" 
   read git_msg
   git commit -m "$git_msg"
 
@@ -92,10 +97,10 @@ function perform_install () {
   DEST=$1
   EXISTING_DIR=$(check_dir $DEST)
   if [ "$EXISTING_DIR" == "true" ]; then
-    echo "$DEST not empty."
+    echo -e "${INPUT_COLOR}$DEST not empty.${NO_COLOR}"
     EXE=$(confirm 'Overwrite? [Y/n]')
     if [ "$EXE" != "true" ]; then
-      echo "Aborting."
+      echo -e "${MSG_COLOR}Aborting.${NO_COLOR}"
       exit 1
     fi
     echo "Removing dir $DEST"
@@ -108,18 +113,17 @@ function perform_install () {
   cd $DEST
   project_setup
 
-  GiT_SETUP=$(confirm 'Setup Git? [Y/n]')
-  if [ "$GiT_SETUP" == "true" ]; then
+  echo -e "${INPUT_COLOR}Setup Git?${NO_COLOR}"
+  GIT_SETUP=$(confirm '[Y/n]')
+  if [ "$GIT_SETUP" == "true" ]; then
     git_setup
   fi 
 
   build_project
 
-  echo "...Finshed"
+  echo -e "${MSG_COLOR}Finshed. Bene installed at $DEST${NO_COLOR}"
   exit 1
 }
-
-
 
 # Install script
 case "$1" in
