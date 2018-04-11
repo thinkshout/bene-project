@@ -15,8 +15,6 @@ class RoboFile extends \ThinkShout\RoboDrupal\Tasks
       $result = $this->taskExec('drush mi menu_links')
         ->run();
 
-      $result = FALSE;
-
       return $result;
     }
     return FALSE;
