@@ -81,11 +81,11 @@ function build_project () {
 function git_setup () {
   echo "...Registering git repository"
   git init
-  echo -e "${INPUT_COLOR}Git repo:${NO_COLOR}"
+  echo -e "${INPUT_COLOR}Git repo [ex: git@github.com:thinkshout/bene.git]?${NO_COLOR}"
   read git_repo
   git remote add origin $git_repo
   git add .
-  echo -e "${INPUT_COLOR}Inital commit message:${NO_COLOR}" 
+  echo -e "${INPUT_COLOR}Inital commit message [ex: 'initial Bene installation']?${NO_COLOR}" 
   read git_msg
   git commit -m "$git_msg"
 
