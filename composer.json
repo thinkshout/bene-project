@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "drupal/bene": "dev-4-fix-install",
+        "drupal/bene": "dev-8.x-1.x",
         "composer/installers": "^1.2",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.6",

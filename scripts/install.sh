@@ -14,7 +14,6 @@ function print_help () {
 }
 
 function check_dir () {
-  # echo "checking $1"
   if [ -d "$1" ]; then
     echo "true"
   else 
@@ -37,7 +36,11 @@ function confirm () {
 function composer_setup () {
   echo "...Setting up Bene distro in $1"
   ROOT=$1
-  composer create-project thinkshout/bene-project:4-fix-install $ROOT --stability dev --no-interaction
+  # @TODO 04.11.2018 create-project pulls the WRONG VERSION of this project for some reason
+  # @TODO 04.11.2018 copying over pertinent files instead
+  # composer create-project thinkshout/bene-project:dev-4-fix-install $ROOT --stability dev --no-interaction
+  cp -R ./* $ROOT
+  cp ./.env.dist $ROOT
 }
 
 function project_setup () {
@@ -66,14 +69,6 @@ function build_project () {
     beneDB_PASS=$db_pass
   fi
 
-  # @TODO remove
-  echo "DB SETTINGS:"
-  echo "  name: $db_name"
-  echo "  user: $DB_USER"
-  echo "  pass: $DB_PASS"
-
-  # @TODO pressflow
-  # DEFAULT_PRESSFLOW_SETTINGS_={"databases":{"default":{"default":{"driver":"mysql","prefix":"","database":"","username":"root","password":"root","host":"localhost","port":3306}}},"conf":{"pressflow_smart_start":true,"pantheon_binding":null,"pantheon_site_uuid":null,"pantheon_environment":"local","pantheon_tier":"local","pantheon_index_host":"localhost","pantheon_index_port":8983,"redis_client_host":"localhost","redis_client_port":6379,"redis_client_password":"","file_public_path":"sites\/default\/files","file_private_path":"sites\/default\/files\/private","file_directory_path":"site\/default\/files","file_temporary_path":"\/tmp","file_directory_temp":"\/tmp","css_gzip_compression":false,"js_gzip_compression":false,"page_compression":false},"hash_salt":"","config_directory_name":"sites\/default\/config","drupal_hash_salt":""}
   ./vendor/bin/robo configure --db-user=$DB_USER --db-pass=$DB_PASS --db-name=$db_name --profile=bene
   ./vendor/bin/robo install
 }
