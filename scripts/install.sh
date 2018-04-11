@@ -14,7 +14,7 @@ function print_help () {
   echo ""
   echo "options:"
   echo "-h, --help            show this text"
-  echo "-d, --directory       specify install directory"
+  echo "-d, --directory       *(required) specify install directory"
 }
 
 function check_dir () {
