@@ -79,7 +79,7 @@
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
         "drupal-scaffold": {
-            "source": "https://raw.githubusercontent.com/pantheon-systems/drops-8/update-{version}/{path}",
+            "source": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{version}/{path}",
             "includes": [
                 "sites/default/default.services.pantheon.preproduction.yml",
                 "sites/default/settings.pantheon.php"
