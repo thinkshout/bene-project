@@ -40,7 +40,7 @@
     "require-dev": {
         "vlucas/phpdotenv": "^2.2",
         "drupal/coder": "^8.2",
-        "thinkshout/robo-drupal": "dev-pantheon_install"
+        "thinkshout/robo-drupal": "dev-master"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
