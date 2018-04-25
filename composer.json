@@ -82,7 +82,9 @@
             "source": "https://raw.githubusercontent.com/pantheon-systems/drops-8/{version}/{path}",
             "includes": [
                 "sites/default/default.services.pantheon.preproduction.yml",
-                "sites/default/settings.pantheon.php"
+                "sites/default/settings.pantheon.php",
+                "sites/default/default.services.yml",
+                "sites/default/default.settings.php"
             ],
             "excludes": [
                 ".csslintrc",
@@ -90,7 +92,11 @@
                 ".eslintignore",
                 ".eslintrc.json",
                 "web.config"
-            ]
+            ],
+            "initial": {
+                "sites/default/default.services.yml": "sites/default/services.yml",
+                "sites/default/default.settings.php": "sites/default/settings.php"
+            }
         }
     }
 }
