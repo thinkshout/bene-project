@@ -23,20 +23,21 @@ You can also make this change permanent by editing your `~/.zshrc` or `~/.bashrc
 
 ## New Projects
 
+### create repository
+Go to github https://github.com/new and create a new repository. The script expects an empty repository. Do not put anything in it or the script will fail.
+
 ### Initial build (new repo)
 
-Start inside the ~/Projects directory and build your site (replace 'new-project-name' with the name of the project folder):
-
-```
-./scripts/install.sh -d new-project-name
-
-ex: ./scripts/install.sh -d ~/Sites/bene-new-project
-```
+Start inside the ~/Projects/bene-project (or replace bene-project with whatever you named it) directory and build your site (replace 'new-project-name' with the name of the project folder):
 
 There are several prompts along the way with a few things to keep in mind:
-- The install destination should be outside of the project folder. The installer will fail if it tries to install inside the parent folder.
+- The install destination should be outside of the bene-project folder. The installer will fail if it tries to install inside the parent folder.
 - The directory for the new project will attempt to overwrite if an install is detected, however, if it was populated by a composer script, you may have to remove it manually, as there are several system-owned files that need to be removed. You may have to manually remove the folder if this fails.
-- A prompt will ask for a database name later in the process. If the database exists, it will be able to be installed, regardless of prior population. If the database does not exist, the script will fail.
+- A prompt will ask for a database name later in the process. If the database exists, it will be able to be installed, regardless of prior population. If the database does not exist, the script will fail. Create a new database if one does not already exist.
+
+```
+./scripts/install.sh -d ~/Sites/bene-new-project
+```
 
 **Done! Your output script should verify with a message similar to:**
 
