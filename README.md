@@ -43,6 +43,9 @@ There are several prompts along the way with a few things to keep in mind:
 
  `Finshed. Bene installed at /Users/jeffshinrock/Sites/bene-new-project`
 
+Change directory into ~/Sites/bene-new-project and run
+robo configure
+robo install
 
 ## Existing projects
 
