@@ -85,7 +85,7 @@ function git_setup () {
   read git_repo
   git remote add origin $git_repo
   git add .
-  echo -e "${INPUT_COLOR}Inital commit message [ex: 'initial Bene installation']?${NO_COLOR}" 
+  echo -e "${INPUT_COLOR}Initial commit message [ex: 'initial Bene installation']?${NO_COLOR}"
   read git_msg
   git commit -m "$git_msg"
 
