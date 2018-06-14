@@ -92,6 +92,56 @@ function git_setup () {
   git push origin master
 }
 
+function setup_child_theme () {
+  echo "...Setting up new theme."
+  THEME_NAME=`echo $1 | sed 's/.*\///' | sed 's/-/_/g'`
+  echo Theme name is $THEME_NAME
+  THEME_DEST=$1/web/themes/$THEME_NAME
+  echo "Theme will be placed in $THEME_DEST"
+
+  # Make sure it's ok if we remove an existing theme directory. This should never happen for a new bene project.
+  EXISTING_DIR=$(check_dir $THEME_DEST)
+  if [ "$EXISTING_DIR" == "true" ]; then
+    echo -e "${INPUT_COLOR}$THEME_DEST not empty.${NO_COLOR}"
+    EXE=$(confirm 'Overwrite? [Y/n]')
+    if [ "$EXE" != "true" ]; then
+      echo -e "${MSG_COLOR}Aborting.${NO_COLOR}"
+      exit 1
+    fi
+    echo "Removing dir $THEME_DEST"
+    rm -rf $THEME_DEST
+  fi
+
+  # move bene_child theme into its destination, this also renames from bene_child directory to the new theme name
+  mv $1/web/profiles/contrib/bene/themes/bene_child $THEME_DEST
+
+  # go through files and edit them replacing bene_child with the new theme name
+  sed "s/bene_child_/${THEME_NAME}_/g" $THEME_DEST/bene_child.theme >$THEME_DEST/$THEME_NAME.theme
+  rm $THEME_DEST/bene_child.theme
+
+  sed "s/name: Bene Child/name: ${THEME_NAME}/g" $THEME_DEST/bene_child.info.yml | sed "s/bene_child/${THEME_NAME}/g" >$THEME_DEST/$THEME_NAME.info.yml
+  rm $THEME_DEST/bene_child.info.yml
+
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/bene_child.libraries.yml >$THEME_DEST/$THEME_NAME.libraries.yml
+  rm $THEME_DEST/bene_child.libraries.yml
+
+  mv $THEME_DEST/composer.json $THEME_DEST/composer.child
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/composer.child >$THEME_DEST/composer.json
+  rm $THEME_DEST/composer.child
+
+  mv $THEME_DEST/package.json $THEME_DEST/package.child
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/package.child >$THEME_DEST/package.json
+  rm $THEME_DEST/package.child
+
+  mv $THEME_DEST/package.json $THEME_DEST/package.child
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/package.child >$THEME_DEST/package.json
+  rm $THEME_DEST/package.child
+
+  mv $THEME_DEST/README.md $THEME_DEST/README.md.child
+  sed "s/Bene Child/${THEME_NAME}/g" $THEME_DEST/README.md.child | sed "s/Bene_child/${THEME_NAME}/g" | sed "s:/new-project-name/web/profiles/contrib/bene/themes/bene_child where new-project-name is your project.:${THEME_DEST}:g" >$THEME_DEST/README.md
+  rm $THEME_DEST/README.md.child
+}
+
 function perform_install () {
   echo "...Installing Bene";
   DEST=$1
@@ -117,9 +167,15 @@ function perform_install () {
   GIT_SETUP=$(confirm '[Y/n]')
   if [ "$GIT_SETUP" == "true" ]; then
     git_setup
-  fi 
+  fi
 
   build_project
+
+  echo -e "${INPUT_COLOR}Setup Child Theme?${NO_COLOR}"
+  THEME_SETUP=$(confirm '[Y/n]')
+  if [ "$THEME_SETUP" == "true" ]; then
+    setup_child_theme $DEST
+  fi
 
   echo -e "${MSG_COLOR}Finshed. Bene installed at $DEST${NO_COLOR}"
   exit 1
