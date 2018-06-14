@@ -47,6 +47,7 @@ Change directory into ~/Sites/bene-new-project and run
 ```
 robo configure
 robo install
+drush uli
 ```
 ## Existing projects
 
