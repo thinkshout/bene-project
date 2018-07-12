@@ -20,7 +20,7 @@ function print_help () {
 function check_dir () {
   if [ -d "$1" ]; then
     echo "true"
-  else 
+  else
     echo "false"
   fi
 }
@@ -57,8 +57,10 @@ function project_setup () {
 function build_project () {
   echo "...Building project"
 
-  echo -e "${INPUT_COLOR}Database name:${NO_COLOR}"
-  read db_name
+  while [ -z "$db_name" ]; do
+    echo -e "${INPUT_COLOR}Database name:${NO_COLOR}"
+    read db_name
+  done
 
   DB_USER='root'
   DB_PASS='root'
@@ -67,26 +69,39 @@ function build_project () {
   if [ "$DEFAULT_DB_SETTINGS" != "true" ]; then
     echo -e "${INPUT_COLOR}Database user:${NO_COLOR}"
     read db_user
-    DB_USER=$db_user
+    DB_USER="$db_user"
 
     echo -e "${INPUT_COLOR}Database pass:${NO_COLOR}"
     read db_pass
-    beneDB_PASS=$db_pass
+    DB_PASS="$db_pass"
   fi
 
-  ./vendor/bin/robo configure --db-user=$DB_USER --db-pass=$DB_PASS --db-name=$db_name --profile=bene
+  ./vendor/bin/robo configure --db-user="$DB_USER" --db-pass="$DB_PASS" --db-name="$db_name" --profile="bene"
   ./vendor/bin/robo install
 }
 
 function git_setup () {
   echo "...Registering git repository"
   git init
-  echo -e "${INPUT_COLOR}Git repo [ex: git@github.com:thinkshout/bene.git]?${NO_COLOR}"
-  read git_repo
+  while [ -z "$git_repo_temp" ]; do
+    echo -e "${INPUT_COLOR}Git repo [ex: git@github.com:thinkshout/bene.git]?${NO_COLOR}"
+    read git_repo_temp
+  done
+
+  while [ -z "$git_repo" ]; do
+   git ls-remote "$git_repo_temp" -q
+    if [ $? == "0" ]; then
+      git_repo="$git_repo_temp"
+    fi
+  done
+
   git remote add origin $git_repo
   git add .
-  echo -e "${INPUT_COLOR}Initial commit message [ex: 'initial Bene installation']?${NO_COLOR}"
-  read git_msg
+
+  while [ -z "$git_msg" ]; do
+    echo -e "${INPUT_COLOR}Initial commit message [ex: 'initial Bene installation']?${NO_COLOR}"
+    read git_msg
+  done
   git commit -m "$git_msg"
 
   git push origin master
@@ -94,8 +109,20 @@ function git_setup () {
 
 function setup_child_theme () {
   echo "...Setting up new theme."
-  THEME_NAME=`echo $1 | sed 's/.*\///' | sed 's/-/_/g'`
-  echo Theme name is $THEME_NAME
+  DEFAULT_THEME_NAME=`echo $1 | sed 's/.*\///' | sed 's/-/_/g'`
+  while [ -z "$THEME_NAME" ]; do
+    echo -e "${INPUT_COLOR}Is the default theme name $DEFAULT_THEME_NAME OK?${NO_COLOR}"
+    DEFAULT_THEME=$(confirm '[Y/n]')
+    if [ "$DEFAULT_THEME" != "true" ]; then
+      while [ -z "$custom_theme_name" ]; do
+        echo -e "${INPUT_COLOR}Custom theme name:${NO_COLOR}"
+        read custom_theme_name
+        THEME_NAME="$custom_theme_name"
+      done
+    else
+      THEME_NAME="$DEFAULT_THEME_NAME"
+    fi
+  done
   THEME_DEST=$1/web/themes/$THEME_NAME
   echo "Theme will be placed in $THEME_DEST"
 
@@ -194,6 +221,3 @@ case "$1" in
     exit 1
     ;;
 esac
-
-
-
