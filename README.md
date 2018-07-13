@@ -10,7 +10,7 @@ First you need to [install composer](https://getcomposer.org/doc/00-intro.md#ins
 
 `brew install composer`
 
-Next add `./vendor/bin` to your PATH, at the beginning of your PATH variable, if it is not already there.
+Next add `./vendor/bin` to your PATH, at the beginning of your PATH variable, if it is not already there (only if not using a new Bene install)
 
 Check with:
 `echo $PATH`
@@ -21,74 +21,54 @@ Update with:
 You can also make this change permanent by editing your `~/.zshrc` or `~/.bashrc` file:
 `export PATH="./vendor/bin:...`
 
-### Initial build (new repo)
+## New Projects
 
-Start inside the ~/Projects directory and build your site (replace 'new-project-name' with the name of the project folder):
+### Create a Git Repository
+Go to github https://github.com/new and create a new repository. The script expects an empty repository. Do not put anything in it or the script will fail.
 
+### Initial Build
+
+Go to a working directory on your computer (NOT a web directory), We'll call it `~/Projects`.
+
+Clone this project:
+git clone git@github.com:thinkshout/bene-project.git
+
+Create an *empty* folder in your web directory, with the name of your project:
+
+`mkdir ~/Sites/my-bene-project`
+
+Create an empty database in your environment to install into.
+
+`mysql -uroot -p -e "create database benesite"`
+
+CD into the `~/Projects/bene-project` directory, and build your site into your new directory with this command:
 ```
-composer create-project thinkshout/bene-project:master new-project-name --stability dev --no-interaction
+./scripts/install.sh -d ~/Sites/my-bene-project
 ```
 
-Enter the new site folder:
+There are several prompts along the way with a few things to keep in mind:
+- The install destination *must* be outside of the bene-project folder. The installer will fail if it tries to install inside the parent folder.
+- The target directory must be empty. If it is not, the install script will attempt to delete the contents, and fail if it cannot.
+- A prompt will ask for the database name later in the process. If the database does not exist, the script will fail. Use the database created above, but be aware that if you choose an existing one, the contents will be cleared out by the script.
 
-```
-cd new-project-name
-```
 
-Initialize a repository on github https://github.com/new that matches your project name and connect your local directory to it:
+**Done! Your output script should verify with a message similar to:**
 
-```
-git init
-git add .
-git commit -m "Initial commit."
-git remote add origin git@github.com:thinkshout/new-project-name.git
-git push -u origin master
-```
+ `Finished. Bene installed at /Users/username/Sites/bene-new-project`
 
-To initialize the project name in several of the files run:
-
+Change directory into ~/Sites/bene-new-project and run
 ```
-composer install
-robo init
+drush uli
 ```
+## Existing projects
 
 ### Initial build (existing repo)
-
-From within your `~/Sites` directory run:
+From within your ~/Sites directory run:
 
 ```
 git clone git@github.com:thinkshout/new-project-name.git
 cd new-project-name
 composer install
-```
-
-### Building
-
-Running the `robo configure` command will read the .env.dist, cli arguments and
-your local environment (`DEFAULT_PRESSFLOW_SETTINGS`) to generate a .env file. This file will be used to set
-the database and other standard configuration options. If no database name is provided, the project name and the git branch name will be used. If no profile name is provided, "standard" will be used. Note the argument to pass to robo configure can include: --db-pass; --db-user; --db-name; --db-host; --profile.
-
-```
-robo configure --profile=bene
-# Use an alternate DB password
-robo configure --profile=bene --db-pass=<YOUR LOCAL DATABASE PASSWORD>
-# Use an alternate DB name
-robo configure --profile=bene --db-name=<YOUR DATABASE NAME>
-```
-
-The structure of `DEFAULT_PRESSFLOW_SETTINGS` if you want to set it locally is:
-
-```
-DEFAULT_PRESSFLOW_SETTINGS_={"databases":{"default":{"default":{"driver":"mysql","prefix":"","database":"","username":"root","password":"root","host":"localhost","port":3306}}},"conf":{"pressflow_smart_start":true,"pantheon_binding":null,"pantheon_site_uuid":null,"pantheon_environment":"local","pantheon_tier":"local","pantheon_index_host":"localhost","pantheon_index_port":8983,"redis_client_host":"localhost","redis_client_port":6379,"redis_client_password":"","file_public_path":"sites\/default\/files","file_private_path":"sites\/default\/files\/private","file_directory_path":"site\/default\/files","file_temporary_path":"\/tmp","file_directory_temp":"\/tmp","css_gzip_compression":false,"js_gzip_compression":false,"page_compression":false},"hash_salt":"","config_directory_name":"sites\/default\/config","drupal_hash_salt":""}
-```
-
-### Installing
-
-Running the robo install command will run composer install to add all required
-dependencies and then install the site and import the exported configuration.
-
-```
-robo install
 ```
 
 ### Testing
@@ -151,3 +131,36 @@ Follow the steps below to update your core files.
    of a [three-way merge tool such as kdiff3](http://www.gitshah.com/2010/12/how-to-setup-kdiff-as-diff-tool-for-git.html). This setup is not necessary if your changes are simple;
    keeping all of your modifications at the beginning or end of the file is a
    good strategy to keep merges easy.
+
+
+## Notes
+
+
+### Building (automatically done for new repo)
+
+Running the `robo configure` command will read the .env.dist, cli arguments and
+your local environment (`DEFAULT_PRESSFLOW_SETTINGS`) to generate a .env file. This file will be used to set
+the database and other standard configuration options. If no database name is provided, the project name and the git branch name will be used. If no profile name is provided, "standard" will be used. Note the argument to pass to robo configure can include: --db-pass; --db-user; --db-name; --db-host; --profile.
+
+```
+robo configure --profile=bene
+# Use an alternate DB password
+robo configure --profile=bene --db-pass=<YOUR LOCAL DATABASE PASSWORD>
+# Use an alternate DB name
+robo configure --profile=bene --db-name=<YOUR DATABASE NAME>
+```
+
+The structure of `DEFAULT_PRESSFLOW_SETTINGS` if you want to set it locally is (set by default for new repos):
+
+```
+DEFAULT_PRESSFLOW_SETTINGS_={"databases":{"default":{"default":{"driver":"mysql","prefix":"","database":"","username":"root","password":"root","host":"localhost","port":3306}}},"conf":{"pressflow_smart_start":true,"pantheon_binding":null,"pantheon_site_uuid":null,"pantheon_environment":"local","pantheon_tier":"local","pantheon_index_host":"localhost","pantheon_index_port":8983,"redis_client_host":"localhost","redis_client_port":6379,"redis_client_password":"","file_public_path":"sites\/default\/files","file_private_path":"sites\/default\/files\/private","file_directory_path":"site\/default\/files","file_temporary_path":"\/tmp","file_directory_temp":"\/tmp","css_gzip_compression":false,"js_gzip_compression":false,"page_compression":false},"hash_salt":"","config_directory_name":"sites\/default\/config","drupal_hash_salt":""}
+```
+
+### Installing (automatically done for new repo)
+
+Running the robo install command will run composer install to add all required
+dependencies and then install the site and import the exported configuration.
+
+```
+robo install
+```

@@ -3,6 +3,10 @@
 
 set -e
 
+INPUT_COLOR="\033[1;36m"
+MSG_COLOR="\033[0;31m"
+NO_COLOR="\033[0m"
+
 # Utility functions
 
 function print_help () {
@@ -10,14 +14,13 @@ function print_help () {
   echo ""
   echo "options:"
   echo "-h, --help            show this text"
-  echo "-d, --directory.      specify install directory"
+  echo "-d, --directory       *(required) specify install directory"
 }
 
 function check_dir () {
-  # echo "checking $1"
   if [ -d "$1" ]; then
     echo "true"
-  else 
+  else
     echo "false"
   fi
 }
@@ -35,23 +38,135 @@ function confirm () {
 }
 
 function composer_setup () {
+  echo "...Setting up Bene distro in $1"
   ROOT=$1
-  echo "...Setting up Bene distro in $ROOT"
-  composer create-project thinkshout/bene-project:master $ROOT --stability dev --no-interaction
+  # @TODO 04.11.2018 create-project pulls the WRONG VERSION of this project for some reason
+  # @TODO 04.11.2018 copying over pertinent files instead
+  # composer create-project thinkshout/bene-project:dev-4-fix-install $ROOT --stability dev --no-interaction
+  cp -R ./* $ROOT
+  cp ./.env.dist $ROOT
+}
+
+function project_setup () {
+  echo "...Configuring project"
+  composer install
+  composer drupal-scaffold
+  ./vendor/bin/robo init
+}
+
+function build_project () {
+  echo "...Building project"
+
+  while [ -z "$db_name" ]; do
+    echo -e "${INPUT_COLOR}Database name:${NO_COLOR}"
+    read db_name
+  done
+
+  DB_USER='root'
+  DB_PASS='root'
+  echo -e "${INPUT_COLOR}Use root:root for db?${NO_COLOR}"
+  DEFAULT_DB_SETTINGS=$(confirm '[Y/n]')
+  if [ "$DEFAULT_DB_SETTINGS" != "true" ]; then
+    echo -e "${INPUT_COLOR}Database user:${NO_COLOR}"
+    read db_user
+    DB_USER="$db_user"
+
+    echo -e "${INPUT_COLOR}Database pass:${NO_COLOR}"
+    read db_pass
+    DB_PASS="$db_pass"
+  fi
+
+  ./vendor/bin/robo configure --db-user="$DB_USER" --db-pass="$DB_PASS" --db-name="$db_name" --profile="bene"
+  ./vendor/bin/robo install
 }
 
 function git_setup () {
-  echo "Registering git repository"
+  echo "...Registering git repository"
   git init
-  echo "Git repo: "
-  read git_repo
+  while [ -z "$git_repo_temp" ]; do
+    echo -e "${INPUT_COLOR}Git repo [ex: git@github.com:thinkshout/bene.git]?${NO_COLOR}"
+    read git_repo_temp
+  done
+
+  while [ -z "$git_repo" ]; do
+   git ls-remote "$git_repo_temp" -q
+    if [ $? == "0" ]; then
+      git_repo="$git_repo_temp"
+    fi
+  done
+
   git remote add origin $git_repo
   git add .
-  echo "Inital commit message: " 
-  read git_msg
+
+  while [ -z "$git_msg" ]; do
+    echo -e "${INPUT_COLOR}Initial commit message [ex: 'initial Bene installation']?${NO_COLOR}"
+    read git_msg
+  done
   git commit -m "$git_msg"
 
   git push origin master
+}
+
+function setup_child_theme () {
+  echo "...Setting up new theme."
+  DEFAULT_THEME_NAME=`echo $1 | sed 's/.*\///' | sed 's/-/_/g'`
+  while [ -z "$THEME_NAME" ]; do
+    echo -e "${INPUT_COLOR}Is the default theme name $DEFAULT_THEME_NAME OK?${NO_COLOR}"
+    DEFAULT_THEME=$(confirm '[Y/n]')
+    if [ "$DEFAULT_THEME" != "true" ]; then
+      while [ -z "$custom_theme_name" ]; do
+        echo -e "${INPUT_COLOR}Custom theme name:${NO_COLOR}"
+        read custom_theme_name
+        THEME_NAME="$custom_theme_name"
+      done
+    else
+      THEME_NAME="$DEFAULT_THEME_NAME"
+    fi
+  done
+  THEME_DEST=$1/web/themes/$THEME_NAME
+  echo "Theme will be placed in $THEME_DEST"
+
+  # Make sure it's ok if we remove an existing theme directory. This should never happen for a new bene project.
+  EXISTING_DIR=$(check_dir $THEME_DEST)
+  if [ "$EXISTING_DIR" == "true" ]; then
+    echo -e "${INPUT_COLOR}$THEME_DEST not empty.${NO_COLOR}"
+    EXE=$(confirm 'Overwrite? [Y/n]')
+    if [ "$EXE" != "true" ]; then
+      echo -e "${MSG_COLOR}Aborting.${NO_COLOR}"
+      exit 1
+    fi
+    echo "Removing dir $THEME_DEST"
+    rm -rf $THEME_DEST
+  fi
+
+  # move bene_child theme into its destination, this also renames from bene_child directory to the new theme name
+  mv $1/web/profiles/contrib/bene/themes/bene_child $THEME_DEST
+
+  # go through files and edit them replacing bene_child with the new theme name
+  sed "s/bene_child_/${THEME_NAME}_/g" $THEME_DEST/bene_child.theme >$THEME_DEST/$THEME_NAME.theme
+  rm $THEME_DEST/bene_child.theme
+
+  sed "s/name: Bene Child/name: ${THEME_NAME}/g" $THEME_DEST/bene_child.info.yml | sed "s/bene_child/${THEME_NAME}/g" >$THEME_DEST/$THEME_NAME.info.yml
+  rm $THEME_DEST/bene_child.info.yml
+
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/bene_child.libraries.yml >$THEME_DEST/$THEME_NAME.libraries.yml
+  rm $THEME_DEST/bene_child.libraries.yml
+
+  mv $THEME_DEST/composer.json $THEME_DEST/composer.child
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/composer.child >$THEME_DEST/composer.json
+  rm $THEME_DEST/composer.child
+
+  mv $THEME_DEST/package.json $THEME_DEST/package.child
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/package.child >$THEME_DEST/package.json
+  rm $THEME_DEST/package.child
+
+  mv $THEME_DEST/package.json $THEME_DEST/package.child
+  sed "s/bene_child/${THEME_NAME}/g" $THEME_DEST/package.child >$THEME_DEST/package.json
+  rm $THEME_DEST/package.child
+
+  mv $THEME_DEST/README.md $THEME_DEST/README.md.child
+  sed "s/Bene Child/${THEME_NAME}/g" $THEME_DEST/README.md.child | sed "s/Bene_child/${THEME_NAME}/g" | sed "s:/new-project-name/web/profiles/contrib/bene/themes/bene_child where new-project-name is your project.:${THEME_DEST}:g" >$THEME_DEST/README.md
+  rm $THEME_DEST/README.md.child
 }
 
 function perform_install () {
@@ -59,35 +174,39 @@ function perform_install () {
   DEST=$1
   EXISTING_DIR=$(check_dir $DEST)
   if [ "$EXISTING_DIR" == "true" ]; then
-    echo "$DEST not empty."
+    echo -e "${INPUT_COLOR}$DEST not empty.${NO_COLOR}"
     EXE=$(confirm 'Overwrite? [Y/n]')
     if [ "$EXE" != "true" ]; then
-      echo "Aborting."
+      echo -e "${MSG_COLOR}Aborting.${NO_COLOR}"
       exit 1
     fi
     echo "Removing dir $DEST"
     rm -rf $DEST
-    
-    # composer create-project thinkshout/bene-project:master $DEST --stability dev --no-interaction
-
-    # echo "Setting up project"
-    # cd $DEST
-
-    # echo "Setup .git repository?"
-    # confirm && git_setup
   fi
 
-  # composer_setup $DEST
+  mkdir $DEST
+  composer_setup $DEST
+  echo "... cd $DEST"
+  cd $DEST
+  project_setup
 
-  GiT_SETUP=$(confirm 'Setup Git? [Y/n]')
-  if [ "$GiT_SETUP" == "true" ]; then
+  echo -e "${INPUT_COLOR}Setup Git?${NO_COLOR}"
+  GIT_SETUP=$(confirm '[Y/n]')
+  if [ "$GIT_SETUP" == "true" ]; then
     git_setup
-  fi 
+  fi
 
-  echo "...Finshed"
+  build_project
+
+  echo -e "${INPUT_COLOR}Setup Child Theme?${NO_COLOR}"
+  THEME_SETUP=$(confirm '[Y/n]')
+  if [ "$THEME_SETUP" == "true" ]; then
+    setup_child_theme $DEST
+  fi
+
+  echo -e "${MSG_COLOR}Finshed. Bene installed at $DEST${NO_COLOR}"
+  exit 1
 }
-
-
 
 # Install script
 case "$1" in
@@ -102,6 +221,3 @@ case "$1" in
     exit 1
     ;;
 esac
-
-
-

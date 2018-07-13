@@ -20,10 +20,10 @@
         }
     ],
     "require": {
-        "drupal/bene": "dev-master",
+        "drupal/bene": "dev-8.x-1.x",
         "composer/installers": "^1.2",
         "drupal-composer/drupal-scaffold": "^2.2",
-        "cweagans/composer-patches": "~1.0",
+        "cweagans/composer-patches": "~1.6",
         "drush/drush": "^8.1.10",
         "drupal/console": "~1.0"
     },
@@ -61,6 +61,7 @@
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
-        }
+        },
+        "enable-patching": true
     }
 }
