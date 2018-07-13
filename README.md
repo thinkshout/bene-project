@@ -54,12 +54,10 @@ There are several prompts along the way with a few things to keep in mind:
 
 **Done! Your output script should verify with a message similar to:**
 
- `Finished. Bene installed at /Users/jeffshinrock/Sites/bene-new-project`
+ `Finished. Bene installed at /Users/username/Sites/bene-new-project`
 
 Change directory into ~/Sites/bene-new-project and run
 ```
-robo configure
-robo install
 drush uli
 ```
 ## Existing projects
