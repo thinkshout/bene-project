@@ -1589,7 +1589,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinkshout/bene.git",
-                "reference": "7395946be50e51ec4aea53cec002b82d3133038f"
+                "reference": "12ae196e935f904377050342989058eb0d8317d2"
             },
             "require": {
                 "commerceguys/addressing": "~1.0",
@@ -1690,7 +1690,7 @@
                 }
             ],
             "description": "Bene distribution for non-profits",
-            "time": "2018-07-27T20:37:32+00:00"
+            "time": "2018-07-27T20:57:57+00:00"
         },
         {
             "name": "drupal/config_update",
