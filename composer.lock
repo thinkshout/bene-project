@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53282fed6d9f411b3a3031524692d2fd",
+    "content-hash": "64756779a3c1caa7fda21c61d048574d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1585,11 +1585,11 @@
         },
         {
             "name": "drupal/bene",
-            "version": "dev-theme-fork",
+            "version": "dev-theme-generalization",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinkshout/bene.git",
-                "reference": "f4d1e1baf298956f9af435aebfd03fbc344580e7"
+                "reference": "7395946be50e51ec4aea53cec002b82d3133038f"
             },
             "require": {
                 "commerceguys/addressing": "~1.0",
@@ -1660,7 +1660,6 @@
                     "drupal/core": {
                         "2484693 - Telephone field with 5 digits or less fatally breaks formatter": "https://www.drupal.org/files/issues/2484693-54.patch",
                         "2880374 - Experimental modules should not have warnings after being installed": "https://www.drupal.org/files/issues/2880374-remove-experimental-warnings-6.patch",
-                        "2923015 - Incompatible method declarations": "https://www.drupal.org/files/issues/2923015-42-8.4.x.patch",
                         "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                         "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch",
                         "2786577 - Improve the Views integration for DateRange fields": "https://www.drupal.org/files/issues/2786577-184-8-3-x-test-do-not-test.patch",
@@ -1691,7 +1690,7 @@
                 }
             ],
             "description": "Bene distribution for non-profits",
-            "time": "2018-04-25T17:04:18+00:00"
+            "time": "2018-07-27T20:37:32+00:00"
         },
         {
             "name": "drupal/config_update",
@@ -4003,7 +4002,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/r4032login",
-                "reference": "722999b0d540c072ded438f33eeb2bcab37650a3"
+                "reference": "a10444360f0d738e7517616fa30d60b5b1da0871"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -4014,8 +4013,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+1-dev",
-                    "datestamp": "1529070524",
+                    "version": "8.x-1.1-beta1+0-dev",
+                    "datestamp": "1532080685",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -4073,7 +4072,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/r4032login"
             },
-            "time": "2018-06-15T13:46:37+00:00"
+            "time": "2018-07-20T09:54:11+00:00"
         },
         {
             "name": "drupal/redirect",
@@ -4360,6 +4359,63 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/views_infinite_scroll"
             }
+        },
+        {
+            "name": "drupal/viewsreference",
+            "version": "dev-2.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/viewsreference",
+                "reference": "162b4f847de8487aaa3fd58510884248e463482b"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "conflict": {
+                "drupal/viewsreferennce": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-alpha4+2-dev",
+                    "datestamp": "1521623884",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "New Zeal",
+                    "homepage": "https://www.drupal.org/user/93571"
+                },
+                {
+                    "name": "joekers",
+                    "homepage": "https://www.drupal.org/user/2229066"
+                },
+                {
+                    "name": "seanB",
+                    "homepage": "https://www.drupal.org/user/545912"
+                }
+            ],
+            "description": "Views reference",
+            "homepage": "http://drupal.org/project/viewsreference",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/viewsreference",
+                "issues": "http://drupal.org/project/issues/viewsreference"
+            },
+            "time": "2018-03-21T09:58:20+00:00"
         },
         {
             "name": "drush/drush",
@@ -7848,6 +7904,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/bene": 20,
         "thinkshout/robo-drupal": 20
     },
     "prefer-stable": true,

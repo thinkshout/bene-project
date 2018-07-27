@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "drupal/bene": "^1.0.5",
+        "drupal/bene": "dev-theme-generalization",
         "composer/installers": "^1.2",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.6",
