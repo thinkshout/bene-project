@@ -10,13 +10,13 @@
         }
     ],
     "repositories": {
-        "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        },
         "bene": {
             "type": "git",
             "url": "https://github.com/thinkshout/bene.git"
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
         },
         "bene_media": {
             "type": "git",
@@ -28,7 +28,7 @@
         }
     },
     "require": {
-        "drupal/bene": "8.x-1.x-dev",
+        "drupal/bene": "8.x-2.x-dev",
         "composer/installers": "^1.2",
         "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
