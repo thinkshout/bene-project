@@ -204,7 +204,7 @@ function perform_install () {
     setup_child_theme $DEST
   fi
 
-  echo -e "${MSG_COLOR}Finshed. Bene installed at $DEST${NO_COLOR}"
+  echo -e "${MSG_COLOR}Finished. Bene installed at $DEST${NO_COLOR}"
   exit 1
 }
 
