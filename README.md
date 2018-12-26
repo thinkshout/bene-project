@@ -51,7 +51,6 @@ There are several prompts along the way with a few things to keep in mind:
 - The target directory must be empty. If it is not, the install script will attempt to delete the contents, and fail if it cannot.
 - A prompt will ask for the database name later in the process. If the database does not exist, the script will fail. Use the database created above, but be aware that if you choose an existing one, the contents will be cleared out by the script.
 
-
 **Done! Your output script should verify with a message similar to:**
 
  `Finished. Bene installed at /Users/username/Sites/bene-new-project`
@@ -79,7 +78,12 @@ Test are run automatically on CircleCI, but can be run locally as well with:
 robo test
 ```
 
-## Updating contributed code
+## Updating the code
+
+### Updating the install profile
+
+All work on the profile should occur in `web/profiles/bene`. Commit and push changes to that repo. To update the profile 
+within your project run `robo dev:update` from your project
 
 ### Updating contrib modules
 

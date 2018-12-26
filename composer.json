@@ -9,26 +9,46 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
+    "repositories": {
+        "bene": {
+            "type": "git",
+            "url": "https://github.com/thinkshout/bene.git"
+        },
+        "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        {
+        "bene_media": {
             "type": "git",
-            "url": "https://github.com/thinkshout/bene.git"
+            "url": "https://github.com/thinkshout/bene_media.git"
+        },
+        "bene_features": {
+            "type": "git",
+            "url": "https://github.com/thinkshout/bene_features.git"
+        },
+        "bene_promo_redirect": {
+            "type": "git",
+            "url": "https://github.com/thinkshout/bene_promo_redirect.git"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
-    ],
+    },
     "require": {
         "drupal/bene": "^2.0.0",
+        "drupal/bene": "8.x-2.x-dev",
         "composer/installers": "^1.2",
+        "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.6",
         "drush/drush": "^8.1.10",
-        "drupal/console": "~1.0"
+        "drupal/console": "~1.0",
+        "drupal/address": "^1.1"
     },
     "require-dev": {
         "vlucas/phpdotenv": "^2.2",
+        "drupal/coder": "^8.2",
         "thinkshout/robo-drupal": "dev-master"
     },
     "minimum-stability": "dev",
@@ -54,14 +74,38 @@
         ]
     },
     "extra": {
+        "enable-patching": true,
+        "installer-types": ["bower-asset"],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset"
+            ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/profiles/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
-        "enable-patching": true
+        "drupal-scaffold": {
+            "source": "https://raw.githubusercontent.com/pantheon-systems/drops-8-scaffolding/{version}/{path}",
+            "includes": [
+                "sites/default/default.services.pantheon.preproduction.yml",
+                "sites/default/settings.pantheon.php",
+                "sites/default/default.services.yml",
+                "sites/default/default.settings.php"
+            ],
+            "excludes": [
+                ".csslintrc",
+                ".editorconfig",
+                ".eslintignore",
+                ".eslintrc.json",
+                "web.config"
+            ],
+            "initial": {
+                "sites/default/default.services.yml": "sites/default/services.yml",
+                "sites/default/default.settings.php": "sites/default/settings.php"
+            }
+        }
     }
 }
