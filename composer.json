@@ -22,6 +22,14 @@
             "type": "git",
             "url": "https://github.com/thinkshout/bene_media.git"
         },
+        "bene_features": {
+            "type": "git",
+            "url": "https://github.com/thinkshout/bene_features.git"
+        },
+        "bene_promo_redirect": {
+            "type": "git",
+            "url": "https://github.com/thinkshout/bene_promo_redirect.git"
+        },
         "asset-packagist": {
             "type": "composer",
             "url": "https://asset-packagist.org"
