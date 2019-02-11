@@ -158,18 +158,18 @@ function perform_install () {
 
   project_setup
 
-  echo -e "${INPUT_COLOR}Setup Git?${NO_COLOR}"
-  GIT_SETUP=$(confirm '[Y/n]')
-  if [ "$GIT_SETUP" == "true" ]; then
-    git_setup
-  fi
-
   build_project
 
   echo -e "${INPUT_COLOR}Setup Child Theme?${NO_COLOR}"
   THEME_SETUP=$(confirm '[Y/n]')
   if [ "$THEME_SETUP" == "true" ]; then
     setup_child_theme $PROJECT_NAME
+  fi
+
+  echo -e "${INPUT_COLOR}Setup Git?${NO_COLOR}"
+  GIT_SETUP=$(confirm '[Y/n]')
+  if [ "$GIT_SETUP" == "true" ]; then
+    git_setup
   fi
 
   echo -e "${MSG_COLOR}Finished installing Bene.${NO_COLOR}"
