@@ -2,25 +2,6 @@
 
 # Bene Project
 
-## Development set-up
-
-This is a Drupal 8 site built using the [robo taskrunner](http://robo.li/).
-
-First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
-
-`brew install composer`
-
-Next add `./vendor/bin` to your PATH, at the beginning of your PATH variable, if it is not already there (only if not using a new Bene install)
-
-Check with:
-`echo $PATH`
-
-Update with:
-`export PATH=./vendor/bin:$PATH`
-
-You can also make this change permanent by editing your `~/.zshrc` or `~/.bashrc` file:
-`export PATH="./vendor/bin:...`
-
 ## New Projects
 
 ### Create a Git Repository
@@ -30,30 +11,24 @@ Go to github https://github.com/new and create a new repository. The script expe
 
 Go to a working directory on your computer (NOT a web directory), We'll call it `~/Projects`.
 
-Clone this project:
-git clone git@github.com:thinkshout/bene-project.git
+Create a local project:
 
-Create an *empty* folder in your web directory, with the name of your project:
+`composer create-project thinkshout/bene-project --stability dev --no-interaction ~/Sites/my-bene-project`
 
-`mkdir ~/Sites/my-bene-project`
-
-Create an empty database in your environment to install into.
+Create an empty database in your environment to install into:
 
 `mysql -uroot -p -e "create database benesite"`
 
-CD into the `~/Projects/bene-project` directory, and build your site into your new directory with this command:
-```
-./scripts/install.sh -d ~/Sites/my-bene-project
-```
+CD into the `~/Sites/my-bene-project` directory, and build your site into your new directory with this command:
+
+`./scripts/install.sh`
 
 There are several prompts along the way with a few things to keep in mind:
-- The install destination *must* be outside of the bene-project folder. The installer will fail if it tries to install inside the parent folder.
-- The target directory must be empty. If it is not, the install script will attempt to delete the contents, and fail if it cannot.
 - A prompt will ask for the database name later in the process. If the database does not exist, the script will fail. Use the database created above, but be aware that if you choose an existing one, the contents will be cleared out by the script.
 
 **Done! Your output script should verify with a message similar to:**
 
- `Finished. Bene installed at /Users/username/Sites/bene-new-project`
+`Finished installing Bene.`
 
 Change directory into ~/Sites/bene-new-project and run
 ```
@@ -139,6 +114,24 @@ Follow the steps below to update your core files.
 
 ## Notes
 
+## Development set-up
+
+This is a Drupal 8 site built using the [robo taskrunner](http://robo.li/).
+
+First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
+
+`brew install composer`
+
+Next add `./vendor/bin` to your PATH, at the beginning of your PATH variable, if it is not already there (only if not using a new Bene install)
+
+Check with:
+`echo $PATH`
+
+Update with:
+`export PATH=./vendor/bin:$PATH`
+
+You can also make this change permanent by editing your `~/.zshrc` or `~/.bashrc` file:
+`export PATH="./vendor/bin:...`
 
 ### Building (automatically done for new repo)
 
