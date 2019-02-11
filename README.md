@@ -5,11 +5,10 @@
 ## New Projects
 
 ### Create a Git Repository
+
 Go to github https://github.com/new and create a new repository. The script expects an empty repository. Do not put anything in it or the script will fail.
 
 ### Initial Build
-
-Go to a working directory on your computer (NOT a web directory), We'll call it `~/Projects`.
 
 Create a local project:
 
