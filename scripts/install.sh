@@ -74,8 +74,16 @@ function build_project () {
 
   ./vendor/bin/robo configure --db-user="$DB_USER" --db-pass="$DB_PASS" --db-name="$db_name" --profile="bene"
   echo "...Installing the Bene profile"
+  if [ ! -f "web/sites/default/settings.local.php" ]; then
+    cp scripts/templates/settings.local.php web/sites/default/settings.local.php
+    sed -i.bak -e "s/DB_NAME/${db_name}/" -e "s/DB_USER/${DB_USER}/" -e "s/DB_PASS/${DB_PASS}/" web/sites/default/settings.local.php
+    rm web/sites/default/*.bak
+  fi
+  if ! grep -q bene-project web/sites/default/settings.php; then
+    cat scripts/templates/settings.partial.php >> web/sites/default/settings.php
+  fi
   cd web
-  ../vendor/bin/drush site-install bene --db-url="mysql://${DB_USER}:${DB_PASS}@127.0.0.1:3306/${db_name}"
+  ../vendor/bin/drush site-install bene
   cd ..
 }
 
