@@ -36,7 +36,7 @@
         }
     },
     "require": {
-        "drupal/bene": "8.x-2.x-dev",
+        "drupal/bene": "^2",
         "composer/installers": "^1.2",
         "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
