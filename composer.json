@@ -9,41 +9,40 @@
             "role": "Developer"
         }
     ],
-    "repositories": {
-        "bene": {
-            "type": "git",
-            "url": "https://github.com/thinkshout/bene.git"
-        },
-        "drupal": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        "bene_media": {
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {
             "type": "git",
             "url": "https://github.com/thinkshout/bene_media.git"
         },
-        "bene_features": {
+        {
             "type": "git",
             "url": "https://github.com/thinkshout/bene_features.git"
         },
-        "bene_promo_redirect": {
+        {
             "type": "git",
             "url": "https://github.com/thinkshout/bene_promo_redirect.git"
         },
-        "asset-packagist": {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
+        {
+            "type": "git",
+            "url": "https://github.com/thinkshout/bene.git"
         }
-    },
+    ],
     "require": {
-        "drupal/bene": "^2",
+        "thinkshout/bene": "^2",
         "composer/installers": "^1.2",
         "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.6",
         "drush/drush": "^8.1.10",
-        "drupal/console": "~1.0",
-        "drupal/address": "^1.1"
+        "drupal/console": "~1.0"
     },
     "require-dev": {
         "vlucas/phpdotenv": "^2.2",
