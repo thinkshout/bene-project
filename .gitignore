@@ -8,7 +8,6 @@
 /web/libraries/
 
 # Ignore sensitive/local information
-/web/sites/*/settings.php
 /web/sites/*/settings.local.php
 behat/behat.local.yml
 
