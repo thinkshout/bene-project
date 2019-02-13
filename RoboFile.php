@@ -13,7 +13,7 @@ class RoboFile extends \ThinkShout\RoboDrupal\Tasks {
   public function devUpdate() {
     $result = $this->taskComposerUpdate()
       ->option('with-dependencies')
-      ->arg('drupal/bene')
+      ->arg('thinkshout/bene')
       ->run();
 
     if ($result->wasSuccessful()) {
