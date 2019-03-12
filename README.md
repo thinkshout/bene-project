@@ -10,7 +10,7 @@ Go to github https://github.com/new and create a new repository. The script expe
 
 ### Initial Build
 
-Create a local project:
+Create a local project (change 'my-bene-project' to the name of your project):
 
 `composer create-project thinkshout/bene-project --stability dev --no-interaction ~/Sites/my-bene-project`
 
