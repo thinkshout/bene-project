@@ -8,6 +8,10 @@
 
 Go to github https://github.com/new and create a new repository. The script expects an empty repository. Do not put anything in it or the script will fail.
 
+### Continuous Integration
+
+See the instructions at `.circleci/README.md` to configure CircleCI.
+
 ### Initial Build
 
 Create a local project (change 'my-bene-project' to the name of your project):
