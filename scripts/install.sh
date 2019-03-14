@@ -19,6 +19,9 @@ PROJECT_NAME=$(basename "$PWD")
 function print_help () {
   printf 'Usage:\t%s -d <directory>\n' "$0"
   echo ""
+  echo 'Run this script from ~/Sites/myProjectName as ./scripts/install.sh'
+  echo "<directory> is optional. It is the destination where you want the project, for example ~/Sites/myProjectName"
+  echo ""
   echo "options:"
   echo "-h, --help            show this text"
 }
@@ -147,14 +150,11 @@ function setup_child_theme () {
   fi
 
   # Copy bene_child theme into its destination, this also renames from bene_child directory to the new theme name.
-  cp -r web/profiles/contrib/bene/themes/bene_child $THEME_DEST
-  mv "${THEME_DEST}/bene_child.theme" "${THEME_DEST}/${THEME_NAME}.theme"
-  mv "${THEME_DEST}/bene_child.libraries.yml" "${THEME_DEST}/${THEME_NAME}.libraries.yml"
-  mv "${THEME_DEST}/bene_child.info.yml" "${THEME_DEST}/${THEME_NAME}.info.yml"
-  sed -i.bak "s/[bB]ene.[cC]hild/${THEME_NAME}/g" "${THEME_DEST}/${THEME_NAME}.theme" "${THEME_DEST}/${THEME_NAME}.libraries.yml" "${THEME_DEST}/${THEME_NAME}.info.yml" "${THEME_DEST}/README.md" "${THEME_DEST}/composer.json" "${THEME_DEST}/package.json"
-  rm $THEME_DEST/*.bak
-
-  cd web
+  cp -r web/profiles/contrib/bene/themes/bene_child web/themes/bene_child
+  cd web/themes/bene_child
+  source ./update_theme_name.sh $THEME_NAME
+  cd ../..
+  # now in the web directory.
   ../vendor/bin/drush en $THEME_NAME -y
   ../vendor/bin/drush config-set system.theme default $THEME_NAME -y
   ../vendor/bin/drush cr
