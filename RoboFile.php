@@ -1,21 +1,19 @@
 <?php
+
 /**
  * Custom console commands for the Robo task runner.
  *
  * @see http://robo.li/
  */
+class RoboFile extends \ThinkShout\RoboDrupal\Tasks {
 
-
-class RoboFile extends \ThinkShout\RoboDrupal\Tasks
-{
-
+  /**
+   * Updates the Bene profile.
+   */
   public function devUpdate() {
-
-    $this->_remove('composer.lock');
-
     $result = $this->taskComposerUpdate()
       ->option('with-dependencies')
-      ->arg('drupal/bene')
+      ->arg('thinkshout/bene')
       ->run();
 
     if ($result->wasSuccessful()) {
@@ -26,10 +24,7 @@ class RoboFile extends \ThinkShout\RoboDrupal\Tasks
   }
 
   /**
-   * Cleanup migrations.
-   *
-   * @option string migrations
-   *   Optional list of migrations to reset, separated by commmas.
+   * {@inheritdoc}
    */
   public function migrateCleanup($opts = ['migrations' => '']) {
     $migrations = explode(',', $opts['migrations']);

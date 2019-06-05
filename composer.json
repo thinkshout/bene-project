@@ -9,46 +9,39 @@
             "role": "Developer"
         }
     ],
-    "repositories": {
-        "bene": {
-            "type": "git",
-            "url": "https://github.com/thinkshout/bene.git"
-        },
-        "drupal": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        "bene_media": {
-            "type": "git",
-            "url": "https://github.com/thinkshout/bene_media.git"
-        },
-        "bene_features": {
-            "type": "git",
-            "url": "https://github.com/thinkshout/bene_features.git"
-        },
-        "bene_promo_redirect": {
-            "type": "git",
-            "url": "https://github.com/thinkshout/bene_promo_redirect.git"
-        },
-        "asset-packagist": {
+        {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    },
+    ],
     "require": {
-        "drupal/bene": "8.x-2.x-dev",
+        "thinkshout/bene": "^8.2",
         "composer/installers": "^1.2",
         "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.6",
         "drush/drush": "^8.1.10",
         "drupal/console": "~1.0",
-        "drupal/address": "^1.1"
+        "drupal/pantheon_advanced_page_cache": "^1.0"
     },
     "require-dev": {
         "vlucas/phpdotenv": "^2.2",
-        "drupal/coder": "^8.2",
-        "thinkshout/robo-drupal": "dev-master"
+        "drupal/coder": "^8.3",
+        "thinkshout/robo-drupal": "^1.0.0",
+        "drupal/drupal-extension": "^3.4",
+        "behat/mink": "^1.7",
+        "behat/mink-goutte-driver": "^1.2",
+        "dmore/behat-chrome-extension": "^1.3",
+        "drush-ops/behat-drush-endpoint": "^9.3",
+        "jcalderonzumba/gastonjs": "^1.2",
+        "jcalderonzumba/mink-phantomjs-driver": "^0.3.3",
+        "mikey179/vfsstream": "^1.6",
+        "phpunit/phpunit": "^7.5"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -82,7 +75,7 @@
                 "type:bower-asset"
             ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/{$name}": ["type:drupal-profile"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
