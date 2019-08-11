@@ -102,6 +102,7 @@ function git_setup () {
     fi
   done
 
+  git remote remove origin
   git remote add origin $git_repo
   git add .
 
