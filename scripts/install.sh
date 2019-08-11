@@ -45,7 +45,7 @@ function confirm () {
 
 function project_setup () {
   echo "...Configuring project"
-  composer install
+  COMPOSER_MEMORY_LIMIT=-1 composer install
   composer drupal-scaffold
   ./vendor/bin/robo init
 }
